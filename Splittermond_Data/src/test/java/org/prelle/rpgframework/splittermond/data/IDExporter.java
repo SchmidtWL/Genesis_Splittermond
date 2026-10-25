@@ -30,6 +30,7 @@ import org.prelle.splimo.creature.CreatureFeatureType;
 import org.prelle.splimo.creature.CreatureType;
 import org.prelle.splimo.items.FeatureType;
 import org.prelle.splimo.items.ItemTemplate;
+import org.prelle.splimo.items.Material;
 
 /**
  * @author prelle
@@ -67,8 +68,8 @@ public class IDExporter {
 		generateFeatureTypes();
 		generateCreatures();
 		generateEquipments();
+		generateMaterials();
 	}
-
 
 	//-------------------------------------------------------------------
 	/**
@@ -442,11 +443,13 @@ public class IDExporter {
 		out.println(" </body>");
 		out.flush();
 		out.close();
+		System.out.println(list.size() + " Kreaturen Merkmale");
 	}
 
 	//-------------------------------------------------------------------
 	/**
-	 * @throws IOException - Neu 17.04.2019 AS
+	 * @throws IOException
+	 * @since 17.04.2019 AS
 	 */
 	private static void generateCreatures() throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(new File("creature.html")));
@@ -471,10 +474,13 @@ public class IDExporter {
 		out.println(" </body>");
 		out.flush();
 		out.close();
+		System.out.println(list.size() + " Kreaturen");
 	}
+	
 	//-------------------------------------------------------------------
 	/**
-	 * @throws IOException - Neu 20.04.2019 AS
+	 * @throws IOException
+	 * @since 20.04.2019 AS
 	 */
 	private static void generateEquipments() throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(new File("equipments.html")));
@@ -501,6 +507,63 @@ public class IDExporter {
 		out.close();
 		System.out.println(list.size()+" Waffen, Rüstungen und andere Ausrüstungsgegenstände");
 	}
-	
-	
+
+	//-------------------------------------------------------------------
+		/**
+		 * @throws IOException
+		 * @since 15.10.2026 AS
+		 */
+
+		private static void generateMaterials() throws IOException {
+			List<Material> list = SplitterMondCore.getMaterials();
+			Collections.sort(list, new Comparator<Material>() {
+				public int compare(Material o1, Material o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
+
+			// =================================================================
+			// 1. BLOCK: HTML-Datei erzeugen
+			// =================================================================
+			PrintWriter out = new PrintWriter(new FileWriter(new File("materials.html")));
+			out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+			out.println("<html>");
+			out.println(" <head>");
+			out.println("   <title>Materialien</title>");
+			out.println(" </head>");
+			out.println(" <body>");
+			out.println("   <table border=\"1\">");
+			out.println("    <tr><th>&nbsp;Material&nbsp;</th><th>&nbsp;ID&nbsp;</th><th style=\"width: 110px;\">&nbsp;Typ&nbsp;</th><th style=\"text-align: center;\">&nbsp;Qualität&nbsp;</th><th style=\"text-align: right;\">&nbsp;Preis&nbsp;</th><th>&nbsp;Quelle&nbsp;</th></tr>");
+			
+			for (Material data : list) {
+				out.println("    <tr><td>&nbsp;"+data.getName()+"&nbsp;</td><td>&nbsp;"+data.getId()+"&nbsp;</td><td style=\"width: 110px;\">&nbsp;"+data.getType()+"&nbsp;</td><td style=\"text-align: center;\">&nbsp;"+data.getQuality()+"&nbsp;</td><td style=\"text-align: right;\">&nbsp;"+data.getPrice()+"&nbsp;</td><td>&nbsp;"+data.getProductNameShort()+" "+data.getPage()+"&nbsp;</td></tr>");
+			}
+			
+			out.println("   </table>");
+			out.println(" </body>");
+			out.flush();
+			out.close();
+
+			// =================================================================
+			// 2. BLOCK: CSV-Datei erzeugen (mit UTF-8, BOM und getrennter Quelle/Seite)
+			// =================================================================
+			java.io.BufferedWriter csvWriter = new java.io.BufferedWriter(
+				new java.io.OutputStreamWriter(
+					new java.io.FileOutputStream(new File("materials.csv")), 
+					java.nio.charset.StandardCharsets.UTF_8
+				)
+			);
+			// BOM für Excel hinzufügen
+			csvWriter.write("\ufeff");
+			csvWriter.write("Material;ID;Typ;Qualität;Preis;Quelle;Seite\n");
+
+			for (Material data : list) {
+				csvWriter.write(data.getName() + ";" + data.getId() + ";" + data.getType() + ";" + data.getQuality() + ";" + data.getPrice() + ";" + data.getProductNameShort() + ";" + data.getPage() + "\n");
+			}
+			
+			csvWriter.flush();
+			csvWriter.close();
+
+			System.out.println(list.size()+"Besondere Materialien");
+		}
 }
