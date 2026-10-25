@@ -334,6 +334,8 @@ public class SplittermondDataPlugin implements RulePlugin<SpliMoCharacter> {
 		SplitterMondCore.loadPowers(JDG, clazz.getResourceAsStream("jdg/data/powers-jdg.xml"), JDG.getResources(), JDG.getHelpResources());
 		SplitterMondCore.loadMasterships(JDG, clazz.getResourceAsStream("jdg/data/masterships-jdg.xml"), JDG.getResources(), JDG.getHelpResources());
 		SplitterMondCore.loadSpells(JDG, clazz.getResourceAsStream("jdg/data/spells-jdg.xml"), JDG.getResources(), JDG.getHelpResources());
+		SplitterMondCore.loadEquipment(JDG, clazz.getResourceAsStream("jdg/data/equipment-jdg.xml"), JDG.getResources(), JDG.getHelpResources());
+		SplitterMondCore.loadMaterials(JDG, clazz.getResourceAsStream("jdg/data/materials-jdg.xml"), JDG.getResources(), JDG.getHelpResources());
 		count++; callback.progressChanged( (count/totalPlugins) );
 
 		logger.info("START -------------------------------Die Magie-----------------------------------------");
@@ -490,6 +492,7 @@ public class SplittermondDataPlugin implements RulePlugin<SpliMoCharacter> {
 		count++; callback.progressChanged( (count/totalPlugins) );
 
 		// Load after Magie and Zhoujiang: the educations reuse their masterships.
+		logger.info("START ------------------------------Schleier--------------------------------------------");
 		PluginSkeleton SCHLEIER = new PluginSkeleton("Schleier", "Hinter dem Schleier");
 		SplitterMondCore.loadMasterships(SCHLEIER, clazz.getResourceAsStream("schleier/data/masterships-schleier.xml"), SCHLEIER.getResources(), SCHLEIER.getHelpResources());
 		SplitterMondCore.loadEducations(SCHLEIER, clazz.getResourceAsStream("schleier/data/educations-schleier.xml"), SCHLEIER.getResources(), SCHLEIER.getHelpResources());
