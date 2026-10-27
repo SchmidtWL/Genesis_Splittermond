@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<materials>
+	<!-- Basilisk, Leder -->
+	<material id="basiliskLeather" quality="5" price="7500" type="LEATHER">
+	  <modifications>
+	    <attrmod attr="BODYRESIST" val="2" cond="true"/> <!-- KW +2 gegen Gifte und Verwandlungen -->
+	  </modifications>
+	</material>
+	
+	<!-- Drachenschlange, Schuppen -->
+	<material id="dragonSnakeScales" quality="3" price="3000" type="OTHER">
+	  <modifications>
+	    <!-- Fallschaden -1 Stufe -->
+	  </modifications>
+	</material>
+	
+	<!-- Feenpferd, Leder -->
+	<material id="fairyhorseLeather" quality="4" price="5000" type="LEATHER">
+	  <modifications>
+	  </modifications>
+	</material>
+	
+	<!-- Kelpie, Leder -->
+	<material id="kelpieLeather" quality="2" price="1500" type="LEATHER">
+	  <modifications>
+	    <skillmod ref="hunting" value="2" cond="true"/> <!-- Jagdkunst +2 bei Fallenstellen -->
+	  </modifications>
+	</material>
+	
+	<!-- Libellenschlange, Leder -->
+	<material id="dragonflySnakeLeather" quality="3" price="3000" type="LEATHER">
+	  <modifications>
+	    <skillmod ref="illusionmagic" value="1"/> <!-- Illusionsmagie +1 -->
+	    <!-- Alle Illusionen um 2 Punkte schwerer zu durchschauen -->
+	  </modifications>
+	</material>
+	
+	<!-- Mardxar, Fell -->
+	<material id="mardxarFur" quality="2" price="1500" type="LEATHER">
+	  <modifications>
+	    <attrmod attr="BODYRESIST" val="1" cond="true"/> <!-- KW +1 gegen Gifte -->
+	  </modifications>
+	</material>
+	
+	<!-- Mardxar, Flügelleder -->
+	<material id="mardxarWingLeather" quality="2" price="1500" type="LEATHER">
+	  <modifications>
+	    <attrmod attr="BODYRESIST" val="1" cond="true"/> <!-- KW +1 gegen positionsverändernde Angriffe -->
+	  </modifications>
+	</material>
+	
+	<!-- Sphynx, Federn -->
+	<material id="sphynxFeathers" quality="3" price="3000" type="OTHER">
+	  <modifications>
+	    <skillmod ref="arcanelore" value="2" cond="true"/> <!-- Arkane Kunde +2 bei Identifizierung und Analyse von Artefakten -->
+	  </modifications>
+	</material>
+</materials>

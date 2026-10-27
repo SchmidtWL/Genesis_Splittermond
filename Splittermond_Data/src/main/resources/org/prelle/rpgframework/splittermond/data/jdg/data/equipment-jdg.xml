@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<items>
+	
+	   ###########################  Alchemika  ###########################
+	  Wirkungen fehlt 
+	  <item avail="SMALL_TOWN" cplx="U" id="sedatives" load="0" material="OTHER" price="1000" robust="0" type="POTION" />
+	  <item avail="SMALL_TOWN" cplx="U" id="sedativesStrong" load="0" material="OTHER" price="1500" robust="0" type="POTION" />
+	  <item avail="CAPITAL" cplx="U" id="blurredVision" load="0" material="OTHER" price="2500" robust="0" type="POTION" />
+	  
+	   ###########################  Pflanzen  ############################
+	<item avail="LARGE_TOWN" id="tatzenbur" load="0" material="OTHER" price="200" robust="0" type="POTION"/>
+	<item avail="CAPITAL" id="rylia" load="0" material="OTHER" price="1500" robust="0" type="POTION"/>
+  
+</items>
